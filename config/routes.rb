@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root 'static_pages#home'
-  resource :company
+  resources :companies do
+    collection do
+      get 'search'
+    end
+  end
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
