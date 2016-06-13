@@ -1,2 +1,8 @@
 <h1>Details of the company ...</h1>
 <p>Here's where we'll need to put the returned results from the API</p>
+
+<ul>
+<% @company.each do |property| %>
+  <li><%= property[0].humanize %>: <%= property[1] %></li>
+<% end %>
+</ul>

@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   def show
+    @company = JSON.parse(get_company_details(params[:id]).body)
   end
 
   def search
@@ -10,6 +11,15 @@ class CompaniesController < ApplicationController
     def search_companies_by_name(name)
       HTTParty.get('https://api.companieshouse.gov.uk/search/companies',
         { query: { q: name },
+          basic_auth: { username: "M0HNR639VBSB9d8RQWXElUV1nEJ3kbRhcaQgDMzJ",
+                        password: "" }
+        }
+      )
+    end
+
+    def get_company_details(id)
+      HTTParty.get("https://api.companieshouse.gov.uk/company/#{id}",
+        {
           basic_auth: { username: "M0HNR639VBSB9d8RQWXElUV1nEJ3kbRhcaQgDMzJ",
                         password: "" }
         }
