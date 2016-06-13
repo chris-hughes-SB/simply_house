@@ -5,9 +5,7 @@
 <ul>
   <% @companies.each do |item| %>
     <li>
-      <a href="/companies/<%= item["company_number"] %>">
-        <%= item["title"] %>
-      </a>
+      <%= link_to(item["title"], company_path(item["company_number"])) %>
     </li>
   <% end %>
 </ul>
