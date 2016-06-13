@@ -27,7 +27,7 @@
   <% end %>
 </dl>
 
-<h2>Accounts and Annual Return</h2>
+<h2>Accounts and Annual Returns</h2>
 <dl>
   <dt><strong>Company has been liquidated</strong></dt>
   <dd><%= @company["has_been_liquidated"] %></dd>
@@ -53,3 +53,18 @@ due by <strong><%= @company["annual_return"]["next_due"] %></strong>
 Last annual return made up to <%= @company["annual_return"]["last_made_up_to"] %>
 <br/>
 <br/>
+
+<h2>Officers</h2>
+<dl>
+<% @officers.each do |item| %>
+    <dt><strong><%= item["name"] %></strong></dt>
+    <dd>DOB <%= item["date_of_birth"] %></dd>
+    <dd><%= item["occupation"] %></dd>
+    <dd><%= item["officer_role"] %></dd>
+    <dd>Appointed on <%= item["appointed_on"] %></dd>
+    <dd>Resigned on <%= item["resigned_on"] %>
+<% end %>
+</dl>
+<pre>
+  <%= @officers %>
+</pre>
