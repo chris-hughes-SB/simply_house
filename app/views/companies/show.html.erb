@@ -3,6 +3,19 @@
 
 <ul>
 <% @company.each do |property| %>
-  <li><%= property[0].humanize %>: <%= property[1] %></li>
+  <li><%= property[0].titleize %>: <%= property[1] %></li>
 <% end %>
+</ul>
+
+<ul>
+  <li>
+    Company address:
+
+    <br/>
+    <%= @company["registered_office_address"]["address_line_1"] %><br/>
+    <%= @company["registered_office_address"]["address_line_2"] %><br/>
+
+    <%= @company["registered_office_address"]["postal_code"] %>
+    <%= @company["registered_office_address"]["locality"] %>
+  </li>
 </ul>
