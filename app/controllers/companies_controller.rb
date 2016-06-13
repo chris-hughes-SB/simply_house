@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   end
 
   def search
-    @response = search_companies_by_name(:q).body
+    @companies = JSON.parse(search_companies_by_name(params[:q]).body)["items"]
   end
 
   private

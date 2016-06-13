@@ -2,6 +2,12 @@
 
 <%= render("companies/search_form") %>
 
-<pre>
-  <%= @response.inspect %>
-</pre>
+<ul>
+  <% @companies.each do |item| %>
+    <li>
+      <a href="/companies/<%= item["company_number"] %>">
+        <%= item["title"] %>
+      </a>
+    </li>
+  <% end %>
+</ul>
