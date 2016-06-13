@@ -1,11 +1,12 @@
-<h1>Details of the company ...</h1>
-<p>Here's where we'll need to put the returned results from the API</p>
+<h1>Details of <%= @company["company_name"] %></h1>
+<h2>Company number: <%= @company["company_number"] %></h2>
 
-<ul>
+<dl>
 <% @company.each do |property| %>
-  <li><%= property[0].titleize %>: <%= property[1] %></li>
+  <dt><strong><%= property[0].titleize %>:</strong></dt>
+  <dd><%= property[1] %></dd>
 <% end %>
-</ul>
+</dl>
 
 <ul>
   <li>
