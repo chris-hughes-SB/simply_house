@@ -1,104 +1,124 @@
-<h1>Details of <%= @company["company_name"] %></h1>
-<h2>Company number: <%= @company["company_number"] %></h2>
+<div id="header">
+  <h1>Details of <%= @company["company_name"] %></h1>
+  <h2>Company number: <%= @company["company_number"] %></h2>
+</div>
 
+<div id="content">
+  <div id="overview">
+    <h2>Overview</h2>
+    <dl>
+      <% if @company["registered_office_address"]["address_line_1"] %>
+        <dt><strong>Registered office address</strong></dt>
+        <dd>
+          <%= @company["registered_office_address"]["address_line_1"].titleize %><br/>
+          <%= @company["registered_office_address"]["address_line_2"].titleize %><br/>
+          <%= @company["registered_office_address"]["locality"].titleize %><br/>
+          <%= @company["registered_office_address"]["postal_code"] %>
+        </dd>
+        <br/>
+      <% end %>
+      <% if @company.has_key?("undeliverable_registered_office_address") %>
+        <dt><strong>Undeliverable registered office address</strong></dt>
+        <dd><%= @company["undeliverable_registered_office_address"] %></dd>
+        <br/>
+      <% end %>
+      <% if @company.has_key?("company_status") %>
+        <dt><strong>Company status</strong></dt>
+        <dd><%= @company["company_status"].titleize %></dd>
+        <br/>
+      <% end %>
+      <% if @company.has_key?("type") %>
+        <dt><strong>Company type</strong></dt>
+        <dd><%= @company["type"].titleize %></dd>
+        <br/>
+      <% end %>
+      <% if @company.has_key?("jurisdiction") %>
+        <dt><strong>Jurisdiction</strong></dt>
+        <dd><%= @company["jurisdiction"].titleize %></dd>
+        <br/>
+      <% end %>
+      <% if @company.has_key?("date_of_creation") %>
+        <dt><strong>Incorparated on</strong></dt>
+        <dd><%= @company["date_of_creation"] %></dd>
+        <br/>
+      <% end %>
+      <% if @company["sic_codes"] %>
+        <dt><strong>Nature of business</strong></dt>
+        <% @company["sic_codes"].each do |code| %>
+          <dd><%= code %></dd>
+        <% end %>
+      <% end %>
+    </dl>
+  </div>
 
-<h2>Overview</h2>
-<dl>
-  <% if @company["registered_office_address"]["address_line_1"] %>
-    <dt><strong>Registered office address</strong></dt>
-    <dd>
-      <%= @company["registered_office_address"]["address_line_1"].titleize %><br/>
-      <%= @company["registered_office_address"]["address_line_2"].titleize %><br/>
-      <%= @company["registered_office_address"]["locality"].titleize %><br/>
-      <%= @company["registered_office_address"]["postal_code"] %>
-    </dd>
-  <% end %>
-  <% if @company.has_key?("undeliverable_registered_office_address") %>
-    <dt><strong>Undeliverable registered office address</strong></dt>
-    <dd><%= @company["undeliverable_registered_office_address"] %></dd>
-  <% end %>
-  <% if @company.has_key?("company_status") %>
-    <dt><strong>Company status</strong></dt>
-    <dd><%= @company["company_status"].titleize %></dd>
-  <% end %>
-  <% if @company.has_key?("type") %>
-    <dt><strong>Company type</strong></dt>
-    <dd><%= @company["type"].titleize %></dd>
-  <% end %>
-  <% if @company.has_key?("jurisdiction") %>
-    <dt><strong>Jurisdiction</strong></dt>
-    <dd><%= @company["jurisdiction"].titleize %></dd>
-  <% end %>
-  <% if @company.has_key?("date_of_creation") %>
-    <dt><strong>Incorparated on</strong></dt>
-    <dd><%= @company["date_of_creation"] %></dd>
-  <% end %>
-  <% if @company["sic_codes"] %>
-    <dt><strong>Nature of business</strong></dt>
-    <% @company["sic_codes"].each do |code| %>
-      <dd><%= code %></dd>
+  <div id="accounts">
+    <h2>Accounts and Annual Returns</h2>
+    <dl>
+      <% if @company["has_been_liquidated"] %>
+        <dt><strong>Company has been liquidated</strong></dt>
+        <dd><%= @company["has_been_liquidated"] %></dd>
+        <br/>
+      <% end %>
+      <% if @company.has_key?("has_insolvency_history") %>
+        <dt><strong>Company has insolvency history</strong></dt>
+        <dd><%= @company["has_insolvency_history"] %></dd>
+        <br/>
+      <% end %>
+      <% if @company["annual_return"].has_key?("overdue") %>
+        <dt><strong>Annual return late</strong></dt>
+        <dd><%= @company["annual_return"]["overdue"] %></dd>
+        <br/>
+      <% end %>
+      <% if @company.has_key?("can_file") %>
+        <dt><strong>Can file</strong></dt>
+        <dd><%= @company["can_file"] %></dd>
+        <br/>
+      <% end %>
+      <% if @company.has_key?("has_charges") %>
+        <dt><strong>Has charges</strong></dt>
+        <dd><%= @company["has_charges"] %></dd>
+      <% end %>
+    </dl>
+
+    <% if @company["accounts"].has_key?("next_made_up_to") %>
+      First accounts made up to <%= @company["accounts"]["next_made_up_to"] %>
     <% end %>
-  <% end %>
-</dl>
+    <% if @company["accounts"].has_key?("next_due") %>
+      due by <strong><%= @company["accounts"]["next_due"] %></strong>
+    <% end %>
+    <br/>
+    <% if @company["accounts"]["last_accounts"].has_key?("made_up_to") %>
+      Last accounts made up to <%= @company["accounts"]["last_accounts"]["made_up_to"] %>
+      <br/>
+    <% end %>
+    <br/>
+    <% if @company["annual_return"].has_key?("next_made_up_to") %>
+      Next annual return made up to <%= @company["annual_return"]["next_made_up_to"] %>
+    <% end %>
+    <% if @company["annual_return"].has_key?("next_due") %>
+      due by <strong><%= @company["annual_return"]["next_due"] %></strong>
+    <% end %>
+    <br/>
+    <% if @company["annual_return"].has_key?("last_made_up_to") %>
+      Last annual return made up to <%= @company["annual_return"]["last_made_up_to"] %>
+      <br/>
+    <% end %>
+    <br/>
+  </div>
 
-<h2>Accounts and Annual Returns</h2>
-<dl>
-  <% if @company["has_been_liquidated"] %>
-    <dt><strong>Company has been liquidated</strong></dt>
-    <dd><%= @company["has_been_liquidated"] %></dd>
-  <% end %>
-  <% if @company.has_key?("has_insolvency_history") %>
-    <dt><strong>Company has insolvency history</strong></dt>
-    <dd><%= @company["has_insolvency_history"] %></dd>
-  <% end %>
-  <% if @company["annual_return"].has_key?("overdue") %>
-    <dt><strong>Annual return late</strong></dt>
-    <dd><%= @company["annual_return"]["overdue"] %></dd>
-  <% end %>
-  <% if @company.has_key?("can_file") %>
-    <dt><strong>Can file</strong></dt>
-    <dd><%= @company["can_file"] %></dd>
-  <% end %>
-  <% if @company.has_key?("has_charges") %>
-    <dt><strong>Has charges</strong></dt>
-    <dd><%= @company["has_charges"] %></dd>
-  <% end %>
-</dl>
-
-<% if @company["accounts"].has_key?("next_made_up_to") %>
-  First accounts made up to <%= @company["accounts"]["next_made_up_to"] %>
-<% end %>
-<% if @company["accounts"].has_key?("next_due") %>
-  due by <strong><%= @company["accounts"]["next_due"] %></strong>
-<% end %>
-<br/>
-<% if @company["accounts"]["last_accounts"].has_key?("made_up_to") %>
-  Last accounts made up to <%= @company["accounts"]["last_accounts"]["made_up_to"] %>
-  <br/>
-<% end %>
-<br/>
-<% if @company["annual_return"].has_key?("next_made_up_to") %>
-  Next annual return made up to <%= @company["annual_return"]["next_made_up_to"] %>
-<% end %>
-<% if @company["annual_return"].has_key?("next_due") %>
-  due by <strong><%= @company["annual_return"]["next_due"] %></strong>
-<% end %>
-<br/>
-<% if @company["annual_return"].has_key?("last_made_up_to") %>
-  Last annual return made up to <%= @company["annual_return"]["last_made_up_to"] %>
-  <br/>
-<% end %>
-<br/>
-
-<h2>Officers</h2>
-<dl>
-<% @officers.each do |item| %>
-  <% if !item.has_key?("resigned_on") %>
-    <dt><strong><%= item["name"] %></strong></dt>
-    <dd>Date of birth: <%= item["date_of_birth"]["year"] %></dd>
-    <dd><%= item["occupation"] %></dd>
-    <dd><%= item["officer_role"].titleize %></dd>
-    <dd>Appointed on <%= item["appointed_on"] %></dd>
-  <% end %>
-<% end %>
-</dl>
+  <div id="officers">
+    <h2>Officers</h2>
+    <dl>
+    <% @officers.each do |item| %>
+      <% if !item.has_key?("resigned_on") %>
+        <dt><strong><%= item["name"] %></strong></dt>
+        <% if item.has_key?("date_of_birth") %>
+          <dd>Date of birth: <%= item["date_of_birth"]["year"] %></dd>
+        <% end %>
+        <dd>Appointed on <%= item["appointed_on"] %></dd>
+      <% end %>
+      <br/>
+    <% end %>
+    </dl>
+  </div>
+</div>

@@ -2,3 +2,30 @@
   width: 80%;
   margin: 0 auto;
 }
+
+#header {
+  width: 100%;
+  float: left;
+}
+
+#content {
+
+  width: 100%;
+  float: left;
+}
+
+#overview {
+  width: 33%;
+  float:left;
+}
+
+#accounts {
+  width: 33%;
+  float:left;
+  padding-right: 50px;
+}
+
+#officers {
+  width: auto;
+  float:left;
+}
