@@ -115,6 +115,7 @@
         <% if item.has_key?("date_of_birth") %>
           <dd>Date of birth: <%= item["date_of_birth"]["year"] %></dd>
         <% end %>
+        <dd><%= item["occupation"] %></dd>
         <dd>Appointed on <%= item["appointed_on"] %></dd>
       <% end %>
       <br/>
