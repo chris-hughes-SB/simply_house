@@ -10,9 +10,9 @@
       <% if @company["registered_office_address"]["address_line_1"] %>
         <dt><strong>Registered office address</strong></dt>
         <dd>
-          <%= @company["registered_office_address"]["address_line_1"].titleize %><br/>
-          <%= @company["registered_office_address"]["address_line_2"].titleize %><br/>
-          <%= @company["registered_office_address"]["locality"].titleize %><br/>
+          <%= @company["registered_office_address"]["address_line_1"] %><br/>
+          <%= @company["registered_office_address"]["address_line_2"] %><br/>
+          <%= @company["registered_office_address"]["locality"] %><br/>
           <%= @company["registered_office_address"]["postal_code"] %>
         </dd>
         <br/>
@@ -24,17 +24,17 @@
       <% end %>
       <% if @company.has_key?("company_status") %>
         <dt><strong>Company status</strong></dt>
-        <dd><%= @company["company_status"].titleize %></dd>
+        <dd><%= @company["company_status"] %></dd>
         <br/>
       <% end %>
       <% if @company.has_key?("type") %>
         <dt><strong>Company type</strong></dt>
-        <dd><%= @company["type"].titleize %></dd>
+        <dd><%= @company["type"] %></dd>
         <br/>
       <% end %>
       <% if @company.has_key?("jurisdiction") %>
         <dt><strong>Jurisdiction</strong></dt>
-        <dd><%= @company["jurisdiction"].titleize %></dd>
+        <dd><%= @company["jurisdiction"] %></dd>
         <br/>
       <% end %>
       <% if @company.has_key?("date_of_creation") %>
