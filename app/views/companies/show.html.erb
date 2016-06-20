@@ -45,7 +45,7 @@
       <% if @company["sic_codes"] %>
         <dt><strong>Nature of business</strong></dt>
         <% @company["sic_codes"].each do |code| %>
-          <dd><%= code %></dd>
+          <dd><%= lookup_sic_code(code) %></dd>
         <% end %>
       <% end %>
     </dl>
