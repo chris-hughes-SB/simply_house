@@ -1,0 +1,16 @@
+<h1>Search Results</h1>
+
+<%= render("officers/search_form") %>
+
+<ul>
+  <% @officers.each do |item| %>
+    <li>
+      <%= link_to(item["title"], "/officers/#{item["links"]["self"].split("/")[2]}") %>
+    </li>
+  <% end %>
+</ul>
+
+
+<pre>
+  <%= @officers.inspect %>
+</pre>

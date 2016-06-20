@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :officers do
+    collection do
+      get 'search'
+    end
+  end
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
