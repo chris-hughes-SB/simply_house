@@ -111,7 +111,9 @@
     <dl>
     <% @officers.each do |item| %>
       <% if !item.has_key?("resigned_on") %>
-        <dt><strong><%= item["name"] %></strong></dt>
+        <dt><strong>
+          <%= link_to(item["name"], "/officers/#{item["links"]["officer"]["appointments"].split("/")[2]}") %>
+        </strong></dt>
         <% if item.has_key?("date_of_birth") %>
           <dd>Date of birth: <%= item["date_of_birth"]["year"] %></dd>
         <% end %>

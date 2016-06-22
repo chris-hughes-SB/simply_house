@@ -1,5 +1,5 @@
 <%= form_tag(search_officers_path, method: "get") do %>
-  <%= label_tag(:q, "Search for:") %>
+  <%= label_tag(:q, "Search for officer:") %>
   <%= text_field_tag(:q, params[:q]) %>
   <%= submit_tag("Search") %>
 <% end %>
