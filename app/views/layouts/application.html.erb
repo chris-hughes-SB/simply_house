@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="navbar">
+    <%= link_to(image_tag("sb-header-logo.png") , "/") %>
+  </div>
   <div id="container">
     <%= yield %>
   </div>
