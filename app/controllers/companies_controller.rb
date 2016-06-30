@@ -1,14 +1,23 @@
 class CompaniesController < ApplicationController
   def show
-    @company = JSON.parse(get_company_details(params[:id]).body)
+    @company =build_company(params[:id])
     @officers = JSON.parse(get_company_officers(params[:id]).body)["items"]
   end
 
   def search
-    @companies = JSON.parse(search_companies_by_name(params[:q]).body)["items"]
+    @companies = get_companies(params[:q])
   end
 
   private
+    def build_company(id)
+      Company.from_hash(JSON.parse(get_company_details(id).body))
+    end
+
+    def get_companies(name)
+      params = JSON.parse(search_companies_by_name(name).body)["items"]
+      params.map { |company_params| Company.from_hash(company_params) }
+    end
+
     def search_companies_by_name(name)
       HTTParty.get('https://api.companieshouse.gov.uk/search/companies',
         { query: { q: name },

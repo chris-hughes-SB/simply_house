@@ -3,9 +3,9 @@
 <%= render("companies/search_form") %>
 
 <ul>
-  <% @companies.each do |item| %>
+  <% @companies.each do |company| %>
     <li>
-      <%= link_to(item["title"], company_path(item["company_number"])) %>
+      <%= link_to(company.title, company_path(company.company_number)) %>
     </li>
   <% end %>
 </ul>
